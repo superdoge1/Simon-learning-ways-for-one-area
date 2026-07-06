@@ -1,0 +1,4 @@
+interface:
+  display_name: "西蒙学习法领域学习"
+  short_description: "用西蒙学习法生成领域知识地图、组块路径和资源推荐。"
+  default_prompt: "Use $learn-domain-simon to build a Simon-method learning plan for a field I choose."
