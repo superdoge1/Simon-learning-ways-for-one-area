@@ -1,32 +1,33 @@
 ---
 name: learn-domain-simon
-description: Build Chinese learning plans for any specific field using the Simon learning method: first ask the user what domain they want to learn and capture their learner profile, then create a dependency-aware knowledge map, chunked learning path, layered quiz practice, deliverable-based projects, weekly/monthly one-page compression reviews, and categorized high-value GitHub learning resources. Use when the user wants to learn a domain systematically, build a study roadmap, decompose knowledge into small chunks, or find strong GitHub repositories for a learning topic.
+description: Build learning plans for any specific field using the Simon learning method: first ask the user what output language they want, then ask what domain they want to learn and capture their learner profile, then create a dependency-aware knowledge map, chunked learning path, layered quiz practice, deliverable-based projects, weekly/monthly one-page compression reviews, and categorized high-value GitHub learning resources. Use when the user wants to learn a domain systematically, build a study roadmap, decompose knowledge into small chunks, or find strong GitHub repositories for a learning topic.
 ---
 
 # Learn Domain Simon
 
 ## Workflow
 
-Always begin by collecting the learning field before producing the plan.
+Always collect the output language before producing the plan. Then collect the learning field and learner profile.
 
-1. Ask: "你想学习的具体领域是什么？例如：大模型应用开发、量化交易、产品经理、分布式系统、心理学。"
-2. Collect a lightweight learner profile before planning when it is missing:
+1. Ask: "你希望学习方案使用什么语言输出？例如：中文、English、日本語、双语。"
+2. Ask: "你想学习的具体领域是什么？例如：大模型应用开发、量化交易、产品经理、分布式系统、心理学。"
+3. Collect a lightweight learner profile before planning when it is missing:
    - Current level or background.
    - Desired outcome or use case.
    - Weekly time budget.
    - Preferred style: theory-first, practice-first, or balanced.
-3. If the field is too broad, ask one narrowing question before planning. Broad examples include "AI", "编程", "商业", "数学", and "设计".
-4. If the user already supplied enough context in the same request, do not ask again; state reasonable assumptions instead.
-5. Output in Chinese unless the user explicitly requests another language.
-6. Read `references/learning-framework.md` before designing the learning flow.
-7. Read `references/github-resource-rubric.md` before selecting GitHub resources.
+4. If the field is too broad, ask one narrowing question before planning. Broad examples include "AI", "编程", "商业", "数学", and "设计".
+5. If the user already supplied enough context in the same request, do not ask again; state reasonable assumptions instead.
+6. Output the complete plan in the selected language. If no language is provided after asking, default to Chinese and state that assumption.
+7. Read `references/learning-framework.md` before designing the learning flow.
+8. Read `references/github-resource-rubric.md` before selecting GitHub resources.
 
 ## Required Output
 
 Produce a structured learning plan with these sections:
 
 1. `学习目标与边界`
-   - State the learner profile, expected outcome, prerequisites, weekly time budget, learning style, and what is intentionally out of scope.
+   - State the selected output language, learner profile, expected outcome, prerequisites, weekly time budget, learning style, and what is intentionally out of scope.
    - If prerequisites are unknown, assume a motivated beginner and state that assumption.
 
 2. `核心概念知识地图`

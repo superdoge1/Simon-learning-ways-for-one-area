@@ -4,14 +4,14 @@
 
 ## What It Does
 
-When invoked, the skill first asks what field you want to learn and, when needed, collects a lightweight learner profile:
+When invoked, the skill first asks which language you want the learning plan to use. Then it asks what field you want to learn and, when needed, collects a lightweight learner profile:
 
 - Current level or background
 - Desired outcome or use case
 - Weekly time budget
 - Preferred learning style: theory-first, practice-first, or balanced
 
-It then generates a Chinese learning plan with:
+It then generates a learning plan in the selected language with:
 
 - A core concept knowledge map
 - A dependency-aware learning sequence
@@ -64,11 +64,11 @@ Example fields:
 - Distributed systems
 - Psychology
 
-The skill will ask for the specific field before producing the learning plan.
+The skill will ask for the output language and the specific field before producing the learning plan.
 
 ## Notes
 
-The skill is designed to output Chinese learning plans by default. It can still follow another language preference if the user explicitly requests it.
+The skill asks for the desired output language before generating the plan. If no language is provided after asking, it defaults to Chinese and states that assumption.
 
 The original design also references this source when available:
 
