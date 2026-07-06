@@ -13,7 +13,7 @@ When invoked, the skill first asks which language you want the learning plan to 
 
 It then generates a learning plan in the selected language with:
 
-- A core concept knowledge map
+- An interactive core concept knowledge map
 - A dependency-aware learning sequence
 - Fine-grained learning chunks
 - Short explanations for each chunk
@@ -21,17 +21,27 @@ It then generates a learning plan in the selected language with:
 - Deliverable-based practice tasks
 - A final synthesis project
 - Weekly and monthly one-page review templates
-- Categorized GitHub learning resources
+- Week-by-week learning resources, including repositories, documentation, videos, books, courses, and tools
+
+## Interactive Map
+
+The skill now favors an interactive HTML/SVG learning map instead of a static Mermaid mindmap or JPG export. The map is inspired by wide roadmap-style diagrams:
+
+- Concept nodes are arranged by learning sequence and dependency.
+- Stage colors distinguish prerequisites, core concepts, practice, advanced topics, and synthesis projects.
+- Recommended resources can be attached near related nodes as covers, thumbnails, or compact cards.
+- Hovering or focusing a node shows the recommended materials and the suggested study action.
 
 ## Resource Categories
 
-The skill ranks GitHub repositories by learning value and groups them into categories such as:
+The skill ranks learning resources by learning value and groups them into weekly recommendations. Resource types may include:
 
-- Roadmaps
+- Code repositories
+- Official documentation
+- Videos
+- Books
 - Courses
-- Project-based learning
-- Awesome lists
-- Official implementations
+- Project-based tutorials
 - Reference tools
 
 It prioritizes authority, maintenance, documentation quality, runnable examples, learning path clarity, community validation, and fit with the learner's goal.
@@ -43,9 +53,12 @@ learn-domain-simon/
 +-- SKILL.md
 +-- agents/
 |   +-- openai.yaml
++-- assets/
+|   +-- interactive-knowledge-map-template.html
 +-- references/
     +-- github-resource-rubric.md
     +-- learning-framework.md
+    +-- visual-knowledge-map.md
 ```
 
 ## How To Use

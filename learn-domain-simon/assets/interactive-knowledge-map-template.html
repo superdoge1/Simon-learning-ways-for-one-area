@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Interactive Learning Map</title>
+  <style>
+    :root {
+      --bg: #050505;
+      --line: #7a5a44;
+      --text: #f8fafc;
+      --muted: #cbd5e1;
+      --panel: #111827;
+      --prerequisite: #bfe7b8;
+      --core: #bedbff;
+      --practice: #ffc9c9;
+      --advanced: #d9c2ff;
+      --project: #ffecad;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, "Microsoft YaHei", Arial, sans-serif;
+      overflow: auto;
+    }
+    .map {
+      position: relative;
+      width: 2200px;
+      min-height: 1100px;
+      padding: 48px;
+    }
+    .legend {
+      position: absolute;
+      left: 64px;
+      top: 36px;
+      background: #f8fafc;
+      color: #111827;
+      border-radius: 2px;
+      padding: 14px 18px;
+      font-size: 15px;
+      line-height: 1.45;
+    }
+    .node {
+      position: absolute;
+      width: 190px;
+      min-height: 46px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 10px 14px;
+      color: #111827;
+      border: 2px solid rgba(255,255,255,.75);
+      border-radius: 8px;
+      box-shadow: 0 0 0 1px rgba(0,0,0,.18), 0 10px 22px rgba(0,0,0,.25);
+      cursor: pointer;
+      z-index: 3;
+      font-size: 15px;
+    }
+    .node:focus, .node:hover { outline: 3px solid #fbbf24; z-index: 8; }
+    .prerequisite { background: var(--prerequisite); }
+    .core { background: var(--core); }
+    .practice { background: var(--practice); }
+    .advanced { background: var(--advanced); }
+    .project { background: var(--project); }
+    .resource {
+      position: absolute;
+      width: 86px;
+      min-height: 116px;
+      background: #fff;
+      color: #111827;
+      border: 3px solid #3b82f6;
+      z-index: 2;
+      display: grid;
+      grid-template-rows: 1fr auto;
+      font-size: 11px;
+      text-align: center;
+    }
+    .resource img {
+      width: 100%;
+      height: 92px;
+      object-fit: cover;
+      background: #e5e7eb;
+    }
+    .resource .caption { padding: 3px; }
+    .resource.book { border-color: #2563eb; }
+    .resource.video { border-color: #ef4444; }
+    .resource.code { border-color: #22c55e; }
+    .resource.docs { border-color: #f59e0b; }
+    .edge-layer {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .tooltip {
+      position: absolute;
+      left: 50%;
+      top: calc(100% + 12px);
+      width: 340px;
+      transform: translateX(-50%);
+      background: var(--panel);
+      color: var(--text);
+      border: 1px solid #334155;
+      border-radius: 10px;
+      padding: 14px;
+      text-align: left;
+      display: none;
+      box-shadow: 0 24px 50px rgba(0,0,0,.45);
+    }
+    .node:hover .tooltip, .node:focus .tooltip { display: block; }
+    .tooltip h3 { margin: 0 0 8px; font-size: 16px; }
+    .tooltip p { margin: 0 0 10px; color: var(--muted); line-height: 1.45; }
+    .tooltip a { color: #93c5fd; text-decoration: none; }
+    .tooltip ul { margin: 0; padding-left: 18px; }
+    .badge {
+      display: inline-block;
+      margin-right: 6px;
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: #1f2937;
+      color: #f8fafc;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <main class="map" aria-label="Interactive learning map">
+    <svg class="edge-layer" width="2200" height="1100" viewBox="0 0 2200 1100" aria-hidden="true">
+      <!-- Replace these lines with generated dependency and resource connectors. -->
+      <line x1="360" y1="300" x2="600" y2="300" stroke="var(--line)" stroke-width="2" stroke-dasharray="4 4" />
+      <line x1="790" y1="300" x2="1030" y2="300" stroke="var(--line)" stroke-width="2" stroke-dasharray="4 4" />
+    </svg>
+
+    <section class="legend">
+      <div>绿色：先修</div>
+      <div>蓝色：核心</div>
+      <div>粉色：实践</div>
+      <div>紫色：进阶</div>
+      <div>黄色：综合项目</div>
+    </section>
+
+    <!-- Replace sample nodes/resources with generated domain-specific content. -->
+    <button class="node prerequisite" style="left: 250px; top: 280px;">
+      Git / GitHub
+      <span class="tooltip">
+        <h3>Git / GitHub</h3>
+        <p>掌握版本控制，让 AI 生成的代码可回滚、可审查、可协作。</p>
+        <ul>
+          <li><span class="badge">course</span><a href="https://skills.github.com/">GitHub Skills</a></li>
+          <li><span class="badge">deliverable</span>创建仓库并完成 3 次提交</li>
+        </ul>
+      </span>
+    </button>
+    <article class="resource docs" style="left: 260px; top: 385px;">
+      <img alt="" src="" />
+      <div class="caption">GitHub Skills</div>
+    </article>
+
+    <button class="node core" style="left: 590px; top: 280px;">
+      AI 编码代理
+      <span class="tooltip">
+        <h3>AI 编码代理</h3>
+        <p>学习 Codex / Claude Code 通用协作循环：读代码、计划、小步执行、验证。</p>
+        <ul>
+          <li><span class="badge">code</span>官方仓库或文档</li>
+          <li><span class="badge">deliverable</span>完成一次 README 修改和提交</li>
+        </ul>
+      </span>
+    </button>
+  </main>
+</body>
+</html>

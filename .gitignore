@@ -15,6 +15,7 @@ desktop.ini
 *.log
 *.tmp
 *.temp
+artifacts/
 tmp/
 temp/
 

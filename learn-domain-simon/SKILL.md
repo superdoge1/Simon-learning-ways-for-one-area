@@ -1,6 +1,6 @@
 ---
 name: learn-domain-simon
-description: Build learning plans for any specific field using the Simon learning method: first ask the user what output language they want, then ask what domain they want to learn and capture their learner profile, then create a dependency-aware knowledge map, chunked learning path, layered quiz practice, deliverable-based projects, weekly/monthly one-page compression reviews, and categorized high-value GitHub learning resources. Use when the user wants to learn a domain systematically, build a study roadmap, decompose knowledge into small chunks, or find strong GitHub repositories for a learning topic.
+description: Build learning plans for any specific field using the Simon learning method: first ask the user what output language they want, then ask what domain they want to learn and capture their learner profile, then create an interactive dependency-aware knowledge map with hover resource cards, chunked learning path, layered quiz practice, deliverable-based projects, weekly/monthly one-page compression reviews, and week-by-week learning resources. Use when the user wants to learn a domain systematically, build a study roadmap, decompose knowledge into small chunks, make a visual learning map, or find staged GitHub/video/book/course resources for a learning topic.
 ---
 
 # Learn Domain Simon
@@ -20,7 +20,8 @@ Always collect the output language before producing the plan. Then collect the l
 5. If the user already supplied enough context in the same request, do not ask again; state reasonable assumptions instead.
 6. Output the complete plan in the selected language. If no language is provided after asking, default to Chinese and state that assumption.
 7. Read `references/learning-framework.md` before designing the learning flow.
-8. Read `references/github-resource-rubric.md` before selecting GitHub resources.
+8. Read `references/visual-knowledge-map.md` before designing the visual map.
+9. Read `references/github-resource-rubric.md` before selecting learning resources.
 
 ## Required Output
 
@@ -30,19 +31,22 @@ Produce a structured learning plan with these sections:
    - State the selected output language, learner profile, expected outcome, prerequisites, weekly time budget, learning style, and what is intentionally out of scope.
    - If prerequisites are unknown, assume a motivated beginner and state that assumption.
 
-2. `核心概念知识地图`
-   - Use Mermaid `mindmap` when the interface can render Mermaid.
-   - Use an indented tree if Mermaid is unsuitable.
-   - Show 3-6 first-level branches and enough second-level concepts to make the domain navigable.
-   - Add recommended learning order and prerequisite links between major branches.
-   - Mark concepts as `先修`, `核心`, or `进阶` when useful.
+2. `交互式核心概念知识地图`
+   - Prefer an interactive HTML/SVG knowledge map rather than Mermaid mindmap.
+   - Use `assets/interactive-knowledge-map-template.html` as the starting point when creating an artifact.
+   - Use a wide dark canvas, color-coded stage nodes, visible dependency edges, resource cover thumbnails, and hover/focus resource cards, following `references/visual-knowledge-map.md`.
+   - Attach recommended code repositories, official docs, videos, books, or courses to the relevant concept node.
+   - If file creation is not appropriate, output a structured map specification with nodes, edges, stage labels, weekly order, and per-node resources.
+   - Do not require JPG export.
 
 3. `组块化学习路径`
    - Split the field into small chunks.
    - For each chunk, include:
+     - `周次`: the week or sequence slot for this chunk.
      - `知识传授`: the key idea in concise teaching language.
      - `分层测验`: recall, explanation, transfer, and counterexample questions.
      - `可交付实践`: one concrete artifact such as a notebook, demo, case analysis, code repository, decision memo, reading card, diagram, or mini-project.
+     - `本周资源`: staged resources matched to this chunk, including repositories, documentation, videos, books, or courses when verified.
      - `完成标准`: observable evidence that the chunk is learned and the artifact is usable.
 
 4. `综合项目`
@@ -57,14 +61,14 @@ Produce a structured learning plan with these sections:
    - Provide a monthly synthesis template that compresses learned chunks into higher-level modules.
    - Include "可复用模型", "个人知识地图变化", and "下月迁移练习".
 
-7. `GitHub 高价值学习资源`
-   - Search GitHub or the web for current repositories relevant to the field.
-   - Categorize resources as `路线图类`, `课程类`, `项目实战类`, `awesome 清单类`, `官方实现类`, or `参考工具类`.
-   - Rank links inside each category by learning value, not only popularity.
-   - For each resource, include link, why it is valuable, best learning stage, and how to study it.
-   - If live search is unavailable, say so and provide executable GitHub search queries.
+7. `按周学习资源索引`
+   - Search GitHub and the web for current resources relevant to each week.
+   - Include code repositories, official documentation, videos, books, courses, and reference tools when verified.
+   - Group resources by week and by map node, not only in a final undifferentiated list.
+   - For each resource, include link, type, why it is valuable, best learning stage, how to study it, and the deliverable it supports.
+   - If live search is unavailable, say so and provide executable search queries for each week.
 
-## GitHub Search Requirement
+## Resource Search Requirement
 
 Prefer current, source-attributed results. Use available web/search tools when possible. Query patterns:
 
@@ -73,8 +77,11 @@ Prefer current, source-attributed results. Use available web/search tools when p
 - `site:github.com <field> tutorial`
 - `site:github.com <field> examples`
 - `site:github.com <field> course`
+- `<field> official docs`
+- `<field> beginner course video`
+- `<field> recommended books`
 
-Do not invent repository URLs. If a URL cannot be verified, present it as a search query rather than a link.
+Do not invent repository, video, book, or course URLs. If a URL cannot be verified, present it as a search query rather than a link.
 
 ## Link Reference
 
